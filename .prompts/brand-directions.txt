@@ -1,0 +1,5 @@
+DIRECTION 1: centered single-column hero with generous whitespace, oversized numerals for stats — high-contrast serif headlines (Freight Display-style) paired with a humanist sans body — dark mode: charcoal-ink canvas #10141C + one electric cyan accent #00C2D1 — precise, quietly confident, like a private banking terminal
+
+DIRECTION 2: dense asymmetric grid with overlapping document/paper card motifs at odd angles — geometric grotesk headlines (Söhne/Neue Haas style) set in tight tracking, small mono numerals for figures — monochromatic: single indigo hue ranging from #0A1544 to #B8C4F0 across six tints — meticulous, layered, like flipping through a well-organized ledger
+
+DIRECTION 3: full-bleed horizontal scroll with retro ticker-tape and stamped seal graphics — vivid editorial mix: a bold slab serif for headlines with a condensed sans for captions — unexpected pairing: muted slate-blue base #4A5D75 meeting a surprising marigold accent #E8A93B at 10% use — warm, optimistic, like a 1960s Thai bank passbook cover

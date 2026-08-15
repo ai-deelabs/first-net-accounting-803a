@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สำนักงานบัญชีเฟิสท์เน็ท | บริการบัญชีที่แม่นยำ น่าเชื่อถือ</title>
+<meta name="description" content="สำนักงานบัญชีเฟิสท์เน็ท ให้บริการจัดทำบัญชี ตรวจสอบบัญชี วางแผนภาษี และที่ปรึกษาทางการเงินอย่างแม่นยำ โปร่งใส ไว้วางใจได้">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pridi:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+  :root{
+    --background:#10141C;
+    --card:#161C27;
+    --bg-accent:#1A2332;
+    --foreground:#EDEFF3;
+    --muted:#8B93A5;
+    --border:#262F3D;
+    --primary:#00C2D1;
+    --secondary:#2B3646;
+    --accent:#6EF0F5;
+
+    --font-heading:'Pridi', serif;
+    --font-body:'IBM Plex Sans Thai', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--background);
+    color:var(--foreground);
+    font-family:var(--font-body);
+    font-weight:300;
+    line-height:1.9;
+    word-break:break-word;
+    overflow-wrap:break-word;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:var(--font-heading);
+    font-weight:600;
+    line-height:1.5;
+    letter-spacing:0;
+  }
+
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+
+  .container{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .eyebrow{
+    font-family:var(--font-body);
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--primary);
+    font-weight:600;
+    display:inline-block;
+    margin-bottom:18px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:1000;
+    padding:26px 0;
+    transition:padding .4s ease, background .4s ease, box-shadow .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    padding:14px 0;
+    background:rgba(16,20,28,0.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  }
+  nav.container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--font-heading);
+    font-size:1.35rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .logo span{color:var(--primary);}
+  .nav-links{
+    display:none;
+    align-items:center;
+    gap:38px;
+  }
+  .nav-links a{
+    font-size:0.92rem;
+    color:var(--foreground);
+    opacity:0.85;
+    padding:8px 0;
+    position:relative;
+    transition:opacity .25s ease;
+  }
+  .nav-links a:hover{opacity:1;color:var(--primary);}
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+  .nav-cta{
+    display:none;
+    padding:12px 26px;
+    background:var(--primary);
+    color:#08171A;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:600;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,194,209,0.35);}
+
+  .lang-sw{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.78em;
+    color:var(--foreground);
+    opacity:0.8;
+    padding:8px;
+    border-radius:8px;
+    user-select:none;
+  }
+  .lang-sw:hover{opacity:1;color:var(--primary);}
+
+  .hamburger{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:10px;
+  }
+  .hamburger span{
+    width:22px;height:2px;background:var(--foreground);
+    transition:all .3s ease;
+  }
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    position:fixed;
+    top:0;right:0;
+    height:100vh;
+    width:78%;
+    max-width:340px;
+    background:var(--card);
+    border-left:1px solid var(--border);
+    z-index:1100;
+    transform:translateX(100%);
+    transition:transform .4s ease;
+    padding:100px 32px 40px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .mobile-menu.open{transform:translateX(0);}
+  .mobile-menu a{
+    font-size:1.05rem;
+    padding:14px 4px;
+    border-bottom:1px solid var(--border);
+  }
+  .mobile-menu .nav-cta{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+  }
+  .menu-close{
+    position:absolute;top:26px;right:28px;
+    background:none;border:none;color:var(--foreground);
+    cursor:pointer;padding:8px;
+  }
+  .overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.55);
+    z-index:1050;opacity:0;pointer-events:none;transition:opacity .4s ease;
+  }
+  .overlay.open{opacity:1;pointer-events:auto;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:180px 0 100px;
+    text-align:center;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 0%, rgba(0,194,209,0.14), transparent 60%),
+      var(--background);
+  }
+  .hero-grid-lines{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(0,194,209,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,194,209,0.05) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 20%, black, transparent 75%);
+    animation:driftGrid 26s linear infinite;
+  }
+  @keyframes driftGrid{
+    from{background-position:0 0, 0 0;}
+    to{background-position:64px 64px, 64px 64px;}
+  }
+  .hero-inner{position:relative;z-index:2;max-width:780px;margin:0 auto;}
+  .hero h1{
+    font-size:clamp(2.4rem, 6.2vw, 4.4rem);
+    padding-top:6px;
+    margin-bottom:26px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--primary);
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--muted);
+    max-width:560px;
+    margin:0 auto 44px;
+    line-height:1.9;
+  }
+  .hero-actions{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    align-items:center;
+    margin-bottom:70px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:16px 34px;
+    border-radius:999px;
+    font-family:var(--font-body);
+    font-size:0.98rem;
+    font-weight:600;
+    min-height:44px;
+    width:100%;
+    max-width:320px;
+    cursor:pointer;
+    transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--primary);color:#08171A;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,194,209,0.3);}
+  .btn-ghost{background:transparent;border-color:var(--border);color:var(--foreground);}
+  .btn-ghost:hover{border-color:var(--primary);color:var(--primary);}
+
+  .hero-strip{
+    position:relative;z-index:2;
+    display:flex;justify-content:center;gap:10px;
+    color:var(--muted);font-size:0.82rem;
+    flex-wrap:wrap;
+  }
+  .hero-strip span{display:flex;align-items:center;gap:8px;}
+  .hero-strip i{width:15px;height:15px;color:var(--primary);}
+
+  /* ---------- STATS ---------- */
+  .stats{
+    padding:90px 0 100px;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:var(--bg-accent);
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:56px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:var(--font-heading);
+    font-size:clamp(3.4rem,10vw,5.4rem);
+    color:var(--foreground);
+    line-height:1.15;
+    font-weight:500;
+  }
+  .stat-num span{color:var(--primary);}
+  .stat-label{
+    color:var(--muted);
+    font-size:0.92rem;
+    margin-top:6px;
+  }
+
+  /* ---------- SECTION TITLES ---------- */
+  .section{padding:110px 0;}
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 70px;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem,4.6vw,2.8rem);
+    padding-top:6px;
+  }
+  .section-head p{
+    color:var(--muted);
+    margin-top:20px;
+    font-size:1.02rem;
+  }
+
+  /* ---------- SERVICES NUMBERED LIST ---------- */
+  .service-row{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    padding:38px 0;
+    border-top:1px solid var(--border);
+    align-items:flex-start;
+  }
+  .service-row:last-child{border-bottom:1px solid var(--border);}
+  .service-num{
+    font-family:var(--font-heading);
+    font-size:2.6rem;
+    color:var(--secondary);
+    line-height:1;
+    min-width:70px;
+    transition:color .35s ease;
+  }
+  .service-row:hover .service-num{color:var(--primary);}
+  .service-body h3{
+    font-size:1.3rem;
+    margin-bottom:10px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .service-body h3 i{width:20px;height:20px;color:var(--primary);}
+  .service-body p{color:var(--muted);font-size:0.98rem;max-width:640px;}
+
+  /* ---------- ABOUT / ALTERNATING ---------- */
+  .about-row{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:44px;
+    align-items:center;
+    padding:60px 0;
+  }
+  .about-row:nth-child(even) .about-img{order:-1;}
+  .about-img{
+    position:relative;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+  }
+  .about-img img{
+    width:100%;height:340px;object-fit:cover;
+    transition:transform .8s ease;
+  }
+  .about-img:hover img{transform:scale(1.06);}
+  .about-img::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 50%, rgba(16,20,28,0.75));
+  }
+  .about-text .eyebrow{margin-bottom:14px;}
+  .about-text h3{font-size:1.7rem;margin-bottom:18px;padding-top:4px;}
+  .about-text p{color:var(--muted);margin-bottom:16px;}
+  .about-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+  .about-list li{display:flex;gap:12px;align-items:flex-start;color:var(--foreground);font-size:0.96rem;}
+  .about-list i{width:18px;height:18px;color:var(--primary);flex-shrink:0;margin-top:3px;}
+
+  /* ---------- PROCESS TIMELINE ---------- */
+  .timeline{position:relative;max-width:720px;margin:0 auto;}
+  .timeline::before{
+    content:'';position:absolute;left:23px;top:10px;bottom:10px;width:1px;
+    background:linear-gradient(var(--border), var(--primary), var(--border));
+  }
+  .t-step{
+    position:relative;
+    padding-left:70px;
+    padding-bottom:56px;
+  }
+  .t-step:last-child{padding-bottom:0;}
+  .t-dot{
+    position:absolute;left:0;top:0;
+    width:48px;height:48px;border-radius:50%;
+    background:var(--card);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-heading);color:var(--primary);font-size:1.1rem;
+    z-index:2;
+  }
+  .t-step h4{font-size:1.15rem;margin-bottom:8px;padding-top:2px;}
+  .t-step p{color:var(--muted);font-size:0.95rem;}
+
+  /* ---------- PACKAGES TABS ---------- */
+  .tabs-nav{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:44px;
+    flex-wrap:wrap;
+  }
+  .tab-btn{
+    padding:12px 24px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--muted);
+    font-family:var(--font-body);
+    font-size:0.92rem;
+    cursor:pointer;
+    transition:all .3s ease;
+  }
+  .tab-btn.active{background:var(--primary);color:#08171A;border-color:var(--primary);font-weight:600;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;animation:fadein .5s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .pkg-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:44px 36px;
+    max-width:600px;
+    margin:0 auto;
+  }
+  .pkg-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
+  .pkg-head h3{font-size:1.5rem;padding-top:4px;}
+  .pkg-price{font-family:var(--font-heading);color:var(--primary);font-size:1.8rem;}
+  .pkg-price small{font-family:var(--font-body);color:var(--muted);font-size:0.85rem;}
+  .pkg-card ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:30px;}
+  .pkg-card li{display:flex;gap:12px;color:var(--foreground);font-size:0.96rem;align-items:flex-start;}
+  .pkg-card li i{width:18px;height:18px;color:var(--primary);flex-shrink:0;margin-top:3px;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-track{
+    display:flex;
+    gap:24px;
+    overflow-x:auto;
+    padding:10px 4px 30px;
+    scroll-snap-type:x mandatory;
+  }
+  .testi-track::-webkit-scrollbar{height:6px;}
+  .testi-track::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+  .testi-card{
+    scroll-snap-align:start;
+    flex:0 0 82%;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:32px 28px;
+  }
+  .testi-quote{color:var(--foreground);font-size:1.02rem;margin-bottom:24px;}
+  .testi-person{display:flex;align-items:center;gap:14px;}
+  .testi-person img{width:48px;height:48px;border-radius:50%;object-fit:cover;}
+  .testi-name{font-size:0.94rem;font-weight:600;}
+  .testi-role{font-size:0.82rem;color:var(--muted);}
+  .stars{color:var(--primary);display:flex;gap:3px;margin-bottom:16px;}
+  .stars i{width:15px;height:15px;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{
+    border-bottom:1px solid var(--border);
+  }
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 4px;
+    cursor:pointer;
+    font-size:1.02rem;
+    gap:20px;
+  }
+  .faq-q i{width:18px;height:18px;color:var(--primary);flex-shrink:0;transition:transform .3s ease;}
+  .faq-item.open .faq-q i{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0;overflow:hidden;
+    transition:max-height .4s ease, padding .4s ease;
+    color:var(--muted);font-size:0.95rem;
+  }
+  .faq-item.open .faq-a{max-height:300px;padding-bottom:26px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{
+    background:var(--bg-accent);
+    border-radius:32px;
+    padding:60px 28px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-wrap::before{
+    content:'';position:absolute;width:340px;height:340px;
+    background:radial-gradient(circle, rgba(0,194,209,0.16), transparent 70%);
+    top:-140px;right:-100px;
+  }
+  .contact-inner{position:relative;z-index:2;}
+  .contact-wrap h2{font-size:clamp(1.8rem,4.4vw,2.6rem);margin-bottom:18px;padding-top:6px;max-width:600px;margin-left:auto;margin-right:auto;}
+  .contact-wrap p{color:var(--muted);max-width:520px;margin:0 auto 36px;}
+  .contact-cards{
+    display:grid;grid-template-columns:1fr;gap:16px;
+    max-width:640px;margin:44px auto 0;text-align:left;
+  }
+  .contact-card{
+    background:var(--card);border:1px solid var(--border);border-radius:18px;
+    padding:22px;display:flex;gap:16px;align-items:center;
+  }
+  .contact-card i{width:20px;height:20px;color:var(--primary);flex-shrink:0;}
+  .contact-card .label{font-size:0.78rem;color:var(--muted);}
+  .contact-card .value{font-size:0.98rem;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:56px 0 40px;
+    border-top:1px solid var(--border);
+  }
+  .footer-top{
+    display:flex;flex-direction:column;gap:32px;
+    margin-bottom:40px;
+  }
+  .footer-logo{font-family:var(--font-heading);font-size:1.3rem;}
+  .footer-logo span{color:var(--primary);}
+  .footer-desc{color:var(--muted);font-size:0.9rem;max-width:360px;margin-top:14px;}
+  .footer-links{display:flex;flex-direction:column;gap:10px;}
+  .footer-links h5{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;}
+  .footer-links a{color:var(--foreground);font-size:0.92rem;opacity:0.85;padding:4px 0;display:inline-block;}
+  .footer-links a:hover{color:var(--primary);opacity:1;}
+  .footer-bottom{
+    display:flex;flex-direction:column;gap:14px;
+    padding-top:24px;border-top:1px solid var(--border);
+    color:var(--muted);font-size:0.82rem;
+  }
+  .footer-cols{display:grid;grid-template-columns:1fr;gap:32px;}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* ---------- DESKTOP ---------- */
+  @media(min-width:768px){
+    .nav-links{display:flex;}
+    .nav-cta{display:inline-flex;}
+    .hamburger{display:none;}
+    .hero-actions{flex-direction:row;justify-content:center;}
+    .btn{width:auto;}
+    .stats-grid{grid-template-columns:repeat(4,1fr);}
+    .service-row{flex-direction:row;align-items:flex-start;gap:40px;}
+    .about-row{grid-template-columns:1fr 1fr;gap:70px;}
+    .about-img img{height:420px;}
+    .footer-top{flex-direction:row;justify-content:space-between;}
+    .footer-cols{grid-template-columns:repeat(3,1fr);}
+    .footer-bottom{flex-direction:row;justify-content:space-between;}
+    .contact-cards{grid-template-columns:1fr 1fr;}
+    .testi-card{flex:0 0 44%;}
+    .pkg-card{padding:52px 48px;}
+  }
+  @media(min-width:1024px){
+    .testi-card{flex:0 0 32%;}
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" id="menuClose" aria-label="close menu"><i data-lucide="x"></i></button>
+  <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+  <a href="#process" data-lang-th="ขั้นตอนการทำงาน" data-lang-en="Process">ขั้นตอนการทำงาน</a>
+  <a href="#about" data-lang-th="เกี่ยวกับเรา" data-lang-en="About">เกี่ยวกับเรา</a>
+  <a href="#packages" data-lang-th="แพ็กเกจ" data-lang-en="Packages">แพ็กเกจ</a>
+  <a href="#faq" data-lang-th="คำถามที่พบบ่อย" data-lang-en="FAQ">คำถามที่พบบ่อย</a>
+  <a href="#contact" class="nav-cta" data-lang-th="ติดต่อเรา" data-lang-en="Contact Us">ติดต่อเรา</a>
+</div>
+
+<header id="siteHeader">
+  <nav class="container">
+    <div class="logo">First<span>Net</span></div>
+    <div class="nav-links">
+      <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+      <a href="#process" data-lang-th="ขั้นตอนการทำงาน" data-lang-en="Process">ขั้นตอนการทำงาน</a>
+      <a href="#about" data-lang-th="เกี่ยวกับเรา" data-lang-en="About">เกี่ยวกับเรา</a>
+      <a href="#packages" data-lang-th="แพ็กเกจ" data-lang-en="Packages">แพ็กเกจ</a>
+      <a href="#faq" data-lang-th="คำถามที่พบบ่อย" data-lang-en="FAQ">คำถามที่พบบ่อย</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-sw"><i data-lucide="globe" width="14" height="14"></i><span class="lang-sw__label">TH</span></div>
+      <a href="#contact" class="nav-cta" data-lang-th="ติดต่อเรา" data-lang-en="Contact Us">ติดต่อเรา</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="container hero-inner">
+    <span class="eyebrow" data-lang-th="สำนักงานบัญชีเฟิสท์เน็ท" data-lang-en="First Net Accounting Office">สำนักงานบัญชีเฟิสท์เน็ท</span>
+    <h1 data-lang-th='ความแม่นยำ<br>คือความไว้วางใจ<em>ของธุรกิจคุณ</em>' data-lang-en='Precision is the<br>currency of <em>trust</em>'>ความแม่นยำ<br>คือความไว้วางใจ<em>ของธุรกิจคุณ</em></h1>
+    <p class="lead" data-lang-th="บริการจัดทำบัญชี ตรวจสอบบัญชี และวางแผนภาษี ด้วยมาตรฐานระดับมืออาชีพ ดูแลตัวเลขของคุณราวกับเป็นของเราเอง" data-lang-en="Bookkeeping, audit, and tax planning handled with terminal-grade precision — we treat your numbers as if they were our own.">บริการจัดทำบัญชี ตรวจสอบบัญชี และวางแผนภาษี ด้วยมาตรฐานระดับมืออาชีพ ดูแลตัวเลขของคุณราวกับเป็นของเราเอง</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary" data-lang-th="ปรึกษาฟรีวันนี้" data-lang-en="Book a Free Consult">ปรึกษาฟรีวันนี้</a>
+      <a href="#services" class="btn btn-ghost" data-lang-th="ดูบริการทั้งหมด" data-lang-en="Explore Services">ดูบริการทั้งหมด</a>
+    </div>
+    <div class="hero-strip">
+      <span><i data-lucide="shield-check"></i><span data-lang-th="ขึ้นทะเบียนผู้ทำบัญชี" data-lang-en="Licensed Bookkeepers">ขึ้นทะเบียนผู้ทำบัญชี</span></span>
+      <span><i data-lucide="lock"></i><span data-lang-th="ข้อมูลปลอดภัย เข้ารหัส" data-lang-en="Encrypted & Confidential">ข้อมูลปลอดภัย เข้ารหัส</span></span>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label" data-lang-th="ปีที่ให้บริการ" data-lang-en="Years in Practice">ปีที่ให้บริการ</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">480<span>+</span></div>
+        <div class="stat-label" data-lang-th="ลูกค้าที่ไว้วางใจ" data-lang-en="Clients Served">ลูกค้าที่ไว้วางใจ</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num"><span>0</span></div>
+        <div class="stat-label" data-lang-th="ข้อผิดพลาดที่ยอมรับได้" data-lang-en="Tolerance for Error">ข้อผิดพลาดที่ยอมรับได้</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label" data-lang-th="พร้อมให้คำปรึกษา" data-lang-en="Advisory Access">พร้อมให้คำปรึกษา</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-lang-th="บริการของเรา" data-lang-en="Our Services">บริการของเรา</span>
+      <h2 data-lang-th="ทุกตัวเลข ผ่านการดูแลอย่างพิถีพิถัน" data-lang-en="Every figure, handled with care">ทุกตัวเลข ผ่านการดูแลอย่างพิถีพิถัน</h2>
+      <p data-lang-th="ตั้งแต่การบันทึกบัญชีรายวัน ไปจนถึงการวางแผนภาษีเชิงกลยุทธ์ เราดูแลครบทุกมิติทางการเงินของธุรกิจคุณ" data-lang-en="From daily bookkeeping to strategic tax planning — we cover every financial dimension of your business.">ตั้งแต่การบันทึกบัญชีรายวัน ไปจนถึงการวางแผนภาษีเชิงกลยุทธ์ เราดูแลครบทุกมิติทางการเงินของธุรกิจคุณ</p>
+    </div>
+
+    <div class="service-list reveal">
+      <div class="service-row">
+        <div class="service-num">01</div>
+        <div class="service-body">
+          <h3><i data-lucide="book-open-check"></i><span data-lang-th="จัดทำบัญชีรายเดือน" data-lang-en="Monthly Bookkeeping">จัดทำบัญชีรายเดือน</span></h3>
+          <p data-lang-th="บันทึกรายรับรายจ่าย กระทบยอดธนาคาร และจัดทำงบการเงินรายเดือนอย่างถูกต้อง ตรงเวลาทุกรอบบัญชี" data-lang-en="Transaction recording, bank reconciliation, and monthly financial statements delivered accurately, on schedule.">บันทึกรายรับรายจ่าย กระทบยอดธนาคาร และจัดทำงบการเงินรายเดือนอย่างถูกต้อง ตรงเวลาทุกรอบบัญชี</p>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-num">02</div>
+        <div class="service-body">
+          <h3><i data-lucide="calculator"></i><span data-lang-th="วางแผนและยื่นภาษี" data-lang-en="Tax Planning & Filing">วางแผนและยื่นภาษี</span></h3>
+          <p data-lang-th="วิเคราะห์โครงสร้างภาษีเพื่อประโยชน์สูงสุดตามกฎหมาย พร้อมยื่นแบบภาษีทุกประเภทให้ตรงกำหนดเสมอ" data-lang-en="Legal tax structuring for maximum benefit, with every filing type submitted precisely on deadline.">วิเคราะห์โครงสร้างภาษีเพื่อประโยชน์สูงสุดตามกฎหมาย พร้อมยื่นแบบภาษีทุกประเภทให้ตรงกำหนดเสมอ</p>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-num">03</div>
+        <div class="service-body">
+          <h3><i data-lucide="file-search"></i><span data-lang-th="ตรวจสอบบัญชี" data-lang-en="Audit Services">ตรวจสอบบัญชี</span></h3>
+          <p data-lang-th="ตรวจสอบงบการเงินโดยผู้สอบบัญชีรับอนุญาต เพื่อความถูกต้องโปร่งใสตามมาตรฐานการบัญชี" data-lang-en="Financial statement audits by licensed CPAs, ensuring accuracy and full regulatory compliance.">ตรวจสอบงบการเงินโดยผู้สอบบัญชีรับอนุญาต เพื่อความถูกต้องโปร่งใสตามมาตรฐานการบัญชี</p>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-num">04</div>
+        <div class="service-body">
+          <h3><i data-lucide="briefcase"></i><span data-lang-th="จดทะเบียนธุรกิจ" data-lang-en="Business Registration">จดทะเบียนธุรกิจ</span></h3>
+          <p data-lang-th="จดทะเบียนบริษัท ห้างหุ้นส่วน และขอใบอนุญาตต่าง ๆ พร้อมให้คำปรึกษาโครงสร้างธุรกิจที่เหมาะสม" data-lang-en="Company and partnership registration plus permits, with advisory on the optimal business structure.">จดทะเบียนบริษัท ห้างหุ้นส่วน และขอใบอนุญาตต่าง ๆ พร้อมให้คำปรึกษาโครงสร้างธุรกิจที่เหมาะสม</p>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-num">05</div>
+        <div class="service-body">
+          <h3><i data-lucide="users"></i><span data-lang-th="จัดทำเงินเดือนและประกันสังคม" data-lang-en="Payroll & Social Security">จัดทำเงินเดือนและประกันสังคม</span></h3>
+          <p data-lang-th="คำนวณเงินเดือน หักภาษี ณ ที่จ่าย และนำส่งประกันสังคมให้ครบถ้วนตรงเวลาทุกเดือน" data-lang-en="Payroll calculation, withholding tax, and social security submissions handled fully every month.">คำนวณเงินเดือน หักภาษี ณ ที่จ่าย และนำส่งประกันสังคมให้ครบถ้วนตรงเวลาทุกเดือน</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about" style="background:var(--bg-accent);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-lang-th="เหตุผลที่ควรไว้วางใจเรา" data-lang-en="Why Trust Us">เหตุผลที่ควรไว้วางใจเรา</span>
+      <h2 data-lang-th="มาตรฐานเดียวกับที่ธนาคารใช้" data-lang-en="Held to a banking-grade standard">มาตรฐานเดียวกับที่ธนาคารใช้</h2>
+    </div>
+
+    <div class="about-row reveal">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1771442062904-44dddcea7fcf?w=800&h=600&fit=crop" alt="อาคารสำนักงานยามค่ำคืน แสงไฟจากหน้าต่าง">
+      </div>
+      <div class="about-text">
+        <span class="eyebrow" data-lang-th="ทีมงานมืออาชีพ" data-lang-en="A Professional Team">ทีมงานมืออาชีพ</span>
+        <h3 data-lang-th="ผู้ทำบัญชีและผู้สอบบัญชีที่ขึ้นทะเบียนถูกต้อง" data-lang-en="Licensed accountants and auditors, properly registered">ผู้ทำบัญชีและผู้สอบบัญชีที่ขึ้นทะเบียนถูกต้อง</h3>
+        <p data-lang-th="ทีมงานของเราประกอบด้วยผู้ทำบัญชีและผู้สอบบัญชีรับอนุญาต (CPA) ที่ผ่านการขึ้นทะเบียนตามกฎหมาย มีประสบการณ์ดูแลธุรกิจหลากหลายอุตสาหกรรมมากว่าทศวรรษ" data-lang-en="Our team consists of licensed bookkeepers and CPAs, properly registered under Thai law, with over a decade of experience across diverse industries.">ทีมงานของเราประกอบด้วยผู้ทำบัญชีและผู้สอบบัญชีรับอนุญาต (CPA) ที่ผ่านการขึ้นทะเบียนตามกฎหมาย มีประสบการณ์ดูแลธุรกิจหลากหลายอุตสาหกรรมมากว่าทศวรรษ</p>
+        <ul class="about-list">
+          <li><i data-lucide="check-circle"></i><span data-lang-th="ผู้สอบบัญชีรับอนุญาต (CPA) ควบคุมคุณภาพทุกงาน" data-lang-en="CPA-reviewed on every engagement">ผู้สอบบัญชีรับอนุญาต (CPA) ควบคุมคุณภาพทุกงาน</span></li>
+          <li><i data-lucide="check-circle"></i><span data-lang-th="อัปเดตกฎหมายภาษีและบัญชีอย่างต่อเนื่อง" data-lang-en="Continuously updated on tax & accounting law">อัปเดตกฎหมายภาษีและบัญชีอย่างต่อเนื่อง</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="about-row reveal">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop" alt="เอกสารการเงินและเครื่องคิดเลขบนโต๊ะทำงาน">
+      </div>
+      <div class="about-text">
+        <span class="eyebrow" data-lang-th="ความโปร่งใส" data-lang-en="Radical Transparency">ความโปร่งใส</span>
+        <h3 data-lang-th="รายงานที่อ่านง่าย ตรวจสอบได้ทุกขั้นตอน" data-lang-en="Clear reporting, auditable at every step">รายงานที่อ่านง่าย ตรวจสอบได้ทุกขั้นตอน</h3>
+        <p data-lang-th="เราส่งมอบรายงานการเงินที่ชัดเจน พร้อมสรุปประเด็นสำคัญให้ผู้บริหารเข้าใจง่าย ไม่ต้องเป็นนักบัญชีก็อ่านออก" data-lang-en="We deliver clean financial reports with executive summaries any business owner can understand — no accounting background required.">เราส่งมอบรายงานการเงินที่ชัดเจน พร้อมสรุปประเด็นสำคัญให้ผู้บริหารเข้าใจง่าย ไม่ต้องเป็นนักบัญชีก็อ่านออก</p>
+        <ul class="about-list">
+          <li><i data-lucide="check-circle"></i><span data-lang-th="เข้าถึงข้อมูลบัญชีผ่านระบบออนไลน์ได้ตลอดเวลา" data-lang-en="24/7 online access to your books">เข้าถึงข้อมูลบัญชีผ่านระบบออนไลน์ได้ตลอดเวลา</span></li>
+          <li><i data-lucide="check-circle"></i><span data-lang-th="ไม่มีค่าใช้จ่ายแอบแฝง" data-lang-en="No hidden fees, ever">ไม่มีค่าใช้จ่ายแอบแฝง</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-lang-th="ขั้นตอนการทำงาน" data-lang-en="How It Works">ขั้นตอนการทำงาน</span>
+      <h2 data-lang-th="เริ่มต้นง่าย ใน 4 ขั้นตอน" data-lang-en="Get started in four steps">เริ่มต้นง่าย ใน 4 ขั้นตอน</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-step">
+        <div class="t-dot">01</div>
+        <h4 data-lang-th="นัดหมายปรึกษาฟรี" data-lang-en="Free Consultation">นัดหมายปรึกษาฟรี</h4>
+        <p data-lang-th="พูดคุยทำความเข้าใจธุรกิจและความต้องการของคุณ ไม่มีค่าใช้จ่าย" data-lang-en="We discuss your business and needs at no cost, no obligation.">พูดคุยทำความเข้าใจธุรกิจและความต้องการของคุณ ไม่มีค่าใช้จ่าย</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot">02</div>
+        <h4 data-lang-th="วิเคราะห์และเสนอแผนงาน" data-lang-en="Analysis & Proposal">วิเคราะห์และเสนอแผนงาน</h4>
+        <p data-lang-th="ประเมินสถานะบัญชีปัจจุบัน พร้อมเสนอแพ็กเกจที่เหมาะสมกับธุรกิจของคุณ" data-lang-en="We assess your current bookkeeping and recommend a package that fits your business.">ประเมินสถานะบัญชีปัจจุบัน พร้อมเสนอแพ็กเกจที่เหมาะสมกับธุรกิจของคุณ</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot">03</div>
+        <h4 data-lang-th="เริ่มดำเนินการจัดทำบัญชี" data-lang-en="Onboarding & Setup">เริ่มดำเนินการจัดทำบัญชี</h4>
+        <p data-lang-th="ตั้งค่าระบบบัญชี เชื่อมโยงข้อมูล และเริ่มบันทึกรายการตามรอบบัญชีจริง" data-lang-en="We set up your accounting system, link your data, and begin real-time bookkeeping.">ตั้งค่าระบบบัญชี เชื่อมโยงข้อมูล และเริ่มบันทึกรายการตามรอบบัญชีจริง</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot">04</div>
+        <h4 data-lang-th="ส่งมอบรายงานทุกเดือน" data-lang-en="Ongoing Reporting">ส่งมอบรายงานทุกเดือน</h4>
+        <p data-lang-th="รับรายงานการเงินและคำแนะนำเชิงกลยุทธ์อย่างสม่ำเสมอทุกรอบเดือน" data-lang-en="You receive financial reports and strategic guidance consistently, every single month.">รับรายงานการเงินและคำแนะนำเชิงกลยุทธ์อย่างสม่ำเสมอทุกรอบเดือน</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="packages" style="background:var(--bg-accent);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-lang-th="แพ็กเกจบริการ" data-lang-en="Packages">แพ็กเกจบริการ</span>
+      <h2 data-lang-th="เลือกแพ็กเกจที่เหมาะกับธุรกิจของคุณ" data-lang-en="Choose the package that fits your business">เลือกแพ็กเกจที่เหมาะกับธุรกิจของคุณ</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="basic" data-lang-th="เริ่มต้น" data-lang-en="Starter">เริ่มต้น</button>
+        <button class="tab-btn" data-tab="standard" data-lang-th="มาตรฐาน" data-lang-en="Standard">มาตรฐาน</button>
+        <button class="tab-btn" data-tab="premium" data-lang-th="พรีเมียม" data-lang-en="Premium">พรีเมียม</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-basic">
+        <div class="pkg-card">
+          <div class="pkg-head">
+            <h3 data-lang-th="แพ็กเกจเริ่มต้น" data-lang-en="Starter Package">แพ็กเกจเริ่มต้น</h3>
+            <div class="pkg-price">2,500<small data-lang-th=" บาท/เดือน" data-lang-en=" THB / month"> บาท/เดือน</small></div>
+          </div>
+          <ul>
+            <li><i data-lucide="check"></i><span data-lang-th="บันทึกบัญชีรายเดือน สูงสุด 30 รายการ" data-lang-en="Monthly bookkeeping, up to 30 transactions">บันทึกบัญชีรายเดือน สูงสุด 30 รายการ</span></li>
+            <li><i data-lucide="check"></i><span data-lang-th="ยื่นภาษีมูลค่าเพิ่มและภาษีหัก ณ ที่จ่าย" data-lang-en="VAT and withholding tax filing">ยื่นภาษีมูลค่าเพิ่มและภาษีหัก ณ ที่จ่าย</span></li>
+            <li><i data-lucide="check"></i><span data-lang-th="สรุปงบการเงินรายไตรมาส" data-lang-en="Quarterly financial summary">สรุปงบการเงินรายไตรมาส</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;max-width:none;" data-lang-th="เลือกแพ็กเกจนี้" data-lang-en="Choose this Package">เลือกแพ็กเกจนี้</a>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-standard">
+        <div class="pkg-card">
+          <div class="pkg-head">
+            <h3 data-lang-th="แพ็กเกจมาตรฐาน" data-lang-en="Standard Package">แพ็กเกจมาตรฐาน</h3>
+            <div class="pkg-price">4,900<small data-lang-th=" บาท/เดือน" data-lang-en=" THB / month"> บาท/เดือน</small></div>
+          </div>
+          <ul>
+            <li><i data-lucide="check"></i><span data-lang-th="บันทึกบัญชีรายเดือน สูงสุด 100 รายการ" data-lang-en="Monthly bookkeeping, up to 100 transactions">บันทึกบัญชีรายเดือน สูงสุด 100 รายการ</span></li>
+            <li><i data-lucide="check"></i><span data-lang-th="จัดทำเงินเดือนและประกันสังคม" data-lang-en="Payroll and social security filing">จัดทำเงินเดือนและประกันสังคม</span></li>
+            <li><i data-lucide="check"></i><span data-lang-th="งบการเงินรายเดือน พร้อมที่ปรึกษาประจำ" data-lang-en="Monthly financials with dedicated advisor">งบการเงินรายเดือน พร้อมที่ปรึกษาประจำ</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;max-width:none;" data-lang-th="เลือกแพ็กเกจนี้" data-lang-en="Choose this Package">เลือกแพ็กเกจนี้</a>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-premium">
+        <div class="pkg-card">
+          <div class="pkg-head">
+            <h3 data-lang-th="แพ็กเกจพรีเมียม" data-lang-en="Premium Package">แพ็กเกจพรีเมียม</h3>
+            <div class="pkg-price" data-lang-th="ราคาตามตกลง" data-lang-en="Custom Pricing">ราคาตามตกลง</div>
+          </div>
+          <ul>
+            <li><i data-lucide="check"></i><span data-lang-th="บันทึกบัญชีไม่จำกัดรายการ" data-lang-en="Unlimited monthly transactions">บันทึกบัญชีไม่จำกัดรายการ</span></li>
+            <li><i data-lucide="check"></i><span data-lang-th="ตรวจสอบบัญชีโดยผู้สอบบัญชีรับอนุญาต" data-lang-en="Full CPA audit services included">ตรวจสอบบัญชีโดยผู้สอบบัญชีรับอนุญาต</span></li>
+            <li><i data-lucide="check"></i><span data-lang-th="วางแผนภาษีเชิงกลยุทธ์รายปี" data-lang-en="Annual strategic tax planning">วางแผนภาษีเชิงกลยุทธ์รายปี</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;max-width:none;" data-lang-th="ติดต่อฝ่ายขาย" data-lang-en="Talk to Sales">ติดต่อฝ่ายขาย</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-lang-th="เสียงจากลูกค้า" data-lang-en="Client Voices">เสียงจากลูกค้า</span>
+      <h2 data-lang-th="ธุรกิจที่ไว้วางใจเฟิสท์เน็ท" data-lang-en="Businesses that trust First Net">ธุรกิจที่ไว้วางใจเฟิสท์เน็ท</h2>
+    </div>
+    <div class="testi-track reveal">
+      <div class="testi-card">
+        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p class="testi-quote" data-lang-th="“ทีมงานตอบกลับไวมาก และอธิบายเรื่องภาษีให้เข้าใจง่าย ไม่เคยพลาดกำหนดยื่นเลยตลอด 3 ปีที่ใช้บริการ”" data-lang-en="“The team is incredibly responsive and explains tax matters clearly. Never missed a filing deadline in three years.”">“ทีมงานตอบกลับไวมาก และอธิบายเรื่องภาษีให้เข้าใจง่าย ไม่เคยพลาดกำหนดยื่นเลยตลอด 3 ปีที่ใช้บริการ”</p>
+        <div class="testi-person">
+          <img src="https://images.unsplash.com/photo-1514960919797-5ff58c52e5ba?w=100&h=100&fit=crop" alt="ลูกค้า">
+          <div>
+            <div class="testi-name">คุณสิรินทร์ วงศ์เจริญ</div>
+            <div class="testi-role" data-lang-th="เจ้าของธุรกิจนำเข้า-ส่งออก" data-lang-en="Import-Export Business Owner">เจ้าของธุรกิจนำเข้า-ส่งออก</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p class="testi-quote" data-lang-th="“รายงานการเงินอ่านง่าย ช่วยให้ตัดสินใจขยายธุรกิจได้มั่นใจขึ้นมาก แนะนำสำหรับ SME ทุกราย”" data-lang-en="“Their reports are so clear it gave us confidence to expand. I recommend them to every SME I know.”">“รายงานการเงินอ่านง่าย ช่วยให้ตัดสินใจขยายธุรกิจได้มั่นใจขึ้นมาก แนะนำสำหรับ SME ทุกราย”</p>
+        <div class="testi-person">
+          <img src="https://images.unsplash.com/photo-1714750977930-e7a7f4611257?w=100&h=100&fit=crop" alt="ลูกค้า">
+          <div>
+            <div class="testi-name">คุณอนุชิต ศรีสมบัติ</div>
+            <div class="testi-role" data-lang-th="ผู้บริหารบริษัทเทคโนโลยี" data-lang-en="Tech Company Executive">ผู้บริหารบริษัทเทคโนโลยี</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p class="testi-quote" data-lang-th="“ประทับใจความละเอียดรอบคอบ ตรวจสอบทุกรายการก่อนส่งงบ ทำให้เราไว้ใจได้เต็มร้อย”" data-lang-en="“Impressed by their meticulousness — every entry is double-checked before reporting. We trust them completely.”">“ประทับใจความละเอียดรอบคอบ ตรวจสอบทุกรายการก่อนส่งงบ ทำให้เราไว้ใจได้เต็มร้อย”</p>
+        <div class="testi-person">
+          <img src="https://images.unsplash.com/photo-1783598539449-36a8e3faef54?w=100&h=100&fit=crop" alt="ลูกค้า">
+          <div>
+            <div class="testi-name">คุณพิมพ์ชนก เลิศวิไล</div>
+            <div class="testi-role" data-lang-th="เจ้าของร้านอาหารเชนสาขา" data-lang-en="Restaurant Chain Owner">เจ้าของร้านอาหารเชนสาขา</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-lang-th="คำถามที่พบบ่อย" data-lang-en="FAQ">คำถามที่พบบ่อย</span>
+      <h2 data-lang-th="ข้อสงสัยที่ลูกค้าถามบ่อย" data-lang-en="Common Questions">ข้อสงสัยที่ลูกค้าถามบ่อย</h2>
+    </div>
+    <div class="reveal" style="max-width:720px;margin:0 auto;">
+      <div class="faq-item open">
+        <div class="faq-q"><span data-lang-th="ต้องเตรียมเอกสารอะไรบ้างเพื่อเริ่มใช้บริการ" data-lang-en="What documents do I need to get started?">ต้องเตรียมเอกสารอะไรบ้างเพื่อเริ่มใช้บริการ</span><i data-lucide="plus"></i></div>
+        <div class="faq-a" data-lang-th="เพียงหนังสือรับรองบริษัท ใบทะเบียนภาษีมูลค่าเพิ่ม และเอกสารการเงินย้อนหลังตามรอบบัญชีที่ต้องการเริ่มต้น ทีมงานจะช่วยตรวจสอบความครบถ้วนให้อีกครั้ง" data-lang-en="Just your company affidavit, VAT registration, and past financial documents for the period you want to start. Our team will help verify completeness.">เพียงหนังสือรับรองบริษัท ใบทะเบียนภาษีมูลค่าเพิ่ม และเอกสารการเงินย้อนหลังตามรอบบัญชีที่ต้องการเริ่มต้น ทีมงานจะช่วยตรวจสอบความครบถ้วนให้อีกครั้ง</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-lang-th="เปลี่ยนสำนักงานบัญชีระหว่างปีได้หรือไม่" data-lang-en="Can I switch accounting firms mid-year?">เปลี่ยนสำนักงานบัญชีระหว่างปีได้หรือไม่</span><i data-lucide="plus"></i></div>
+        <div class="faq-a" data-lang-th="ได้ครับ/ค่ะ เราสามารถรับช่วงต่อจากสำนักงานเดิมได้ทุกช่วงเวลา โดยจะประสานงานขอข้อมูลและตรวจสอบความถูกต้องก่อนเริ่มดำเนินการ" data-lang-en="Yes, we can take over from your previous provider at any point in the year — we'll coordinate the handover and verify accuracy before we begin.">ได้ครับ/ค่ะ เราสามารถรับช่วงต่อจากสำนักงานเดิมได้ทุกช่วงเวลา โดยจะประสานงานขอข้อมูลและตรวจสอบความถูกต้องก่อนเริ่มดำเนินการ</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-lang-th="มีบริการให้คำปรึกษานอกเวลาทำการหรือไม่" data-lang-en="Is advisory available outside office hours?">มีบริการให้คำปรึกษานอกเวลาทำการหรือไม่</span><i data-lucide="plus"></i></div>
+        <div class="faq-a" data-lang-th="ลูกค้าแพ็กเกจมาตรฐานขึ้นไปสามารถติดต่อที่ปรึกษาประจำผ่านช่องทางด่วนได้ตลอด 24 ชั่วโมงสำหรับกรณีเร่งด่วน" data-lang-en="Standard package clients and above get 24-hour priority access to their dedicated advisor for urgent matters.">ลูกค้าแพ็กเกจมาตรฐานขึ้นไปสามารถติดต่อที่ปรึกษาประจำผ่านช่องทางด่วนได้ตลอด 24 ชั่วโมงสำหรับกรณีเร่งด่วน</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span data-lang-th="ข้อมูลทางการเงินของบริษัทจะถูกเก็บรักษาอย่างไร" data-lang-en="How is my financial data protected?">ข้อมูลทางการเงินของบริษัทจะถูกเก็บรักษาอย่างไร</span><i data-lucide="plus"></i></div>
+        <div class="faq-a" data-lang-th="ข้อมูลทั้งหมดจัดเก็บบนระบบคลาวด์ที่เข้ารหัส พร้อมข้อตกลงรักษาความลับ (NDA) กับพนักงานทุกคนที่เกี่ยวข้อง" data-lang-en="All data is stored on encrypted cloud infrastructure, with NDAs in place for every staff member involved.">ข้อมูลทั้งหมดจัดเก็บบนระบบคลาวด์ที่เข้ารหัส พร้อมข้อตกลงรักษาความลับ (NDA) กับพนักงานทุกคนที่เกี่ยวข้อง</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="contact-inner">
+        <span class="eyebrow" data-lang-th="เริ่มต้นวันนี้" data-lang-en="Get Started">เริ่มต้นวันนี้</span>
+        <h2 data-lang-th="พร้อมดูแลบัญชีของคุณ อย่างมืออาชีพ" data-lang-en="Ready to look after your books, professionally">พร้อมดูแลบัญชีของคุณ อย่างมืออาชีพ</h2>
+        <p data-lang-th="ทักหาเราวันนี้เพื่อรับคำปรึกษาฟรี พร้อมข้อเสนอแพ็กเกจที่เหมาะสมกับธุรกิจของคุณโดยเฉพาะ" data-lang-en="Reach out today for a free consultation and a package proposal tailored specifically to your business.">ทักหาเราวันนี้เพื่อรับคำปรึกษาฟรี พร้อมข้อเสนอแพ็กเกจที่เหมาะสมกับธุรกิจของคุณโดยเฉพาะ</p>
+        <a href="tel:+6621234567" class="btn btn-primary" data-lang-th="โทรหาเราตอนนี้" data-lang-en="Call Us Now">โทรหาเราตอนนี้</a>
+
+        <div class="contact-cards">
+          <div class="contact-card">
+            <i data-lucide="phone"></i>
+            <div>
+              <div class="label" data-lang-th="โทรศัพท์" data-lang-en="Phone">โทรศัพท์</div>
+              <div class="value">02-123-4567</div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i data-lucide="mail"></i>
+            <div>
+              <div class="label" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</div>
+              <div class="value">contact@firstnet-accounting.co.th</div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i data-lucide="map-pin"></i>
+            <div>
+              <div class="label" data-lang-th="ที่อยู่" data-lang-en="Address">ที่อยู่</div>
+              <div class="value" data-lang-th="อาคารสีลมทาวเวอร์ ชั้น 12 ถนนสีลม กรุงเทพฯ" data-lang-en="Silom Tower, 12th Fl., Silom Rd., Bangkok">อาคารสีลมทาวเวอร์ ชั้น 12 ถนนสีลม กรุงเทพฯ</div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i data-lucide="clock"></i>
+            <div>
+              <div class="label" data-lang-th="เวลาทำการ" data-lang-en="Office Hours">เวลาทำการ</div>
+              <div class="value" data-lang-th="จันทร์–ศุกร์ 09:00–18:00 น." data-lang-en="Mon–Fri, 9:00 AM–6:00 PM">จันทร์–ศุกร์ 09:00–18:00 น.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">First<span>Net</span></div>
+        <p class="footer-desc" data-lang-th="สำนักงานบัญชีที่ดูแลตัวเลขของคุณด้วยความแม่นยำและความไว้วางใจ มาตรฐานเดียวกับที่สถาบันการเงินใช้" data-lang-en="An accounting office that handles your numbers with the precision and trust of a financial institution.">สำนักงานบัญชีที่ดูแลตัวเลขของคุณด้วยความแม่นยำและความไว้วางใจ มาตรฐานเดียวกับที่สถาบันการเงินใช้</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-links">
+          <h5 data-lang-th="บริการ" data-lang-en="Services">บริการ</h5>
+          <a href="#services" data-lang-th="จัดทำบัญชี" data-lang-en="Bookkeeping">จัดทำบัญชี</a>
+          <a href="#services" data-lang-th="วางแผนภาษี" data-lang-en="Tax Planning">วางแผนภาษี</a>
+          <a href="#services" data-lang-th="ตรวจสอบบัญชี" data-lang-en="Audit">ตรวจสอบบัญชี</a>
+        </div>
+        <div class="footer-links">
+          <h5 data-lang-th="บริษัท" data-lang-en="Company">บริษัท</h5>
+          <a href="#about" data-lang-th="เกี่ยวกับเรา" data-lang-en="About Us">เกี่ยวกับเรา</a>
+          <a href="#packages" data-lang-th="แพ็กเกจ" data-lang-en="Packages">แพ็กเกจ</a>
+          <a href="#faq" data-lang-th="คำถามที่พบบ่อย" data-lang-en="FAQ">คำถามที่พบบ่อย</a>
+        </div>
+        <div class="footer-links">
+          <h5 data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</h5>
+          <a href="tel:+6621234567">02-123-4567</a>
+          <a href="mailto:contact@firstnet-accounting.co.th">contact@firstnet-accounting.co.th</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-lang-th="© 2569 สำนักงานบัญชีเฟิสท์เน็ท สงวนลิขสิทธิ์" data-lang-en="© 2026 First Net Accounting Office. All rights reserved.">© 2569 สำนักงานบัญชีเฟิสท์เน็ท สงวนลิขสิทธิ์</span>
+      <span data-lang-th="ขึ้นทะเบียนถูกต้องตามกฎหมาย" data-lang-en="Fully licensed & compliant">ขึ้นทะเบียนถูกต้องตามกฎหมาย</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  // header scroll shrink
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  });
+
+  // mobile menu
+  var hamburger = document.getElementById('hamburgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('overlay');
+  var menuClose = document.getElementById('menuClose');
+  function openMenu(){ mobileMenu.classList.add('open'); overlay.classList.add('open'); hamburger.classList.add('open'); }
+  function closeMenu(){ mobileMenu.classList.remove('open'); overlay.classList.remove('open'); hamburger.classList.remove('open'); }
+  hamburger.addEventListener('click', openMenu);
+  menuClose.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  // reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('visible'); io.unobserve(entry.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // tabs
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabBtns.forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.getAttribute('data-tab')).classList.add('active');
+    });
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.querySelector('.faq-q').addEventListener('click', function(){
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+      if(!wasOpen){ item.classList.add('open'); }
+    });
+  });
+</script>
+
+<script>
+(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){if(/[<&]/.test(t)){e.innerHTML=t}else{e.textContent=t}}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+</script>
+
+</body>
+</html>
